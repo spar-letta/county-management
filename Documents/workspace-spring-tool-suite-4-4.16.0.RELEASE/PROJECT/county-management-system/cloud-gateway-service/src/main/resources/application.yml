@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: GATE-WAY-SERVICE
+
+  cloud:
+    gateway:
+      routes:
+        - id: staff-service
+          uri: lb://STAFF-DETAILS-SERVICE
+          predicates:
+            - Path=/staff_details/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: staff-service
+                fallbackuri: forward:/staff-service-fallback
+
+        - id: department-service
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/department/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: department-service
+                fallbackuri: forward:/department-service-fallback
+
+server:
+  port: 8989
+

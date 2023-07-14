@@ -1,0 +1,21 @@
+server:
+  port: 8087
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  application:
+    name: DEPARTMENT-SERVICE
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+
+
+
+
